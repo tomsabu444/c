@@ -1,0 +1,85 @@
+#include<stdio.h>
+struct poly
+{
+int coeff;
+int exp;
+}p1[10],p2[10],p3[10];
+int n,m,k=0;
+void main()
+{
+int i,j;
+printf("Number of elements in the 1st expression");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("enter coefficient");
+scanf("%d",&p1[i].coeff);
+printf("Enter exponent");
+scanf("%d",&p1[i].exp);
+}
+printf("Number of elements in the 2nd expression ");
+scanf("%d",&m);
+for(i=0;i<m;i++)
+{
+printf("enter coefficient");
+scanf("%d",&p2[i].coeff);
+printf("Enter exponent");
+scanf("%d",&p2[i].exp);
+}
+add();
+display();
+}
+void add()
+{
+int i=0,j=0;
+while(i < n && j < m)
+    {
+        if(p1[i].exp == p2[j].exp)
+        {
+            p3[k].coeff = p1[i].coeff + p2[j].coeff;
+            p3[k].exp = p1[i].exp;
+            i++;
+            j++;
+            k++;
+        }
+        else if(p1[i].exp > p2[j].exp)
+        {
+            p3[k].coeff = p1[i].coeff;
+            p3[k].exp = p1[i].exp;
+            i++;
+            k++;
+        }
+        else
+        {
+            p3[k].coeff = p2[i].coeff;
+            p3[k].exp = p2[j].exp;
+            j++;
+            k++;
+        }
+    }
+
+    while(i < n)
+    {
+        p3[k].coeff = p1[i].coeff;
+        p3[k].exp = p1[i].exp;
+        k++;
+        i++;
+    }
+
+    while(j < m)
+    {
+        p3[k].coeff = p2[j].coeff;
+        p3[k].exp = p2[j].exp;
+        k++;
+        j++;
+    }
+}
+void display()
+{
+    int i;
+    printf("\n");
+    for(i = 0; i < k ; i++)
+    {
+        printf("%dX^%d+ ", p3[i].coeff, p3[i].exp);
+    }
+}
