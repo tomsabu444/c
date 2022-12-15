@@ -1,0 +1,127 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+struct node{
+
+int data;
+
+struct node *link;
+
+}*front=NULL,*rear=NULL,*temp=NULL;
+
+void enqueue();
+
+void dequeue();
+
+void display();
+
+void main()
+
+{ int ch;
+
+while(1)
+
+{ printf("\n1.ENQUEUE");
+
+printf("\n2.DEQUEUE");
+
+printf("\n3.DISPLAY");
+
+printf("\n4.EXIT");
+
+printf("\nEnter your choice\n");
+
+scanf("%d",&ch);
+
+switch(ch)
+
+{
+
+case 1: enqueue();
+
+display();
+
+break;
+
+case 2: dequeue();
+
+display();
+
+break;
+
+case 3: display();
+
+break;
+
+case 4: exit(0);
+
+default: printf("INVALID CHOICE");}}}
+
+//Funtion to add element at the front
+
+void enqueue()
+
+{ temp=(struct node*)malloc(sizeof(struct node));
+
+printf("Enter the element to be inserted:");
+
+scanf("%d",&temp->data);
+
+//Allocating memory to the new node
+
+temp->link=NULL;
+
+if(front==NULL){
+
+front=temp;
+
+rear=temp;}
+
+else{ rear->link=temp;
+
+rear=temp;}}
+
+//Function to delete from the end
+
+void dequeue()
+
+{ if(front==NULL){
+
+printf("Queue is empty");}
+
+else{ printf("%d is removed from the queue\n",front->data);
+
+if(front==rear){
+
+rear=NULL;
+
+front=NULL;}
+
+else{ temp=front;
+
+//Reassigning front to the next node
+
+front=front->link;
+
+free(temp);}}}
+
+//Function to display elements of the queue
+
+void display(){
+
+int i;
+
+if(front==NULL) printf("Queue is empty\n");
+
+else{
+
+printf("\n Elements of the queue are:\n");
+
+temp=front;
+
+while(temp!=NULL){
+
+printf("%d ",temp->data);
+
+temp=temp->link;}}}
