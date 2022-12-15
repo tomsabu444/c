@@ -1,0 +1,259 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node* link;
+}*head=NULL ,*temp,*p,*q;
+void insert_front(int);
+void insert_end(int);
+void insert_part(int);
+void delete_end();
+void delete_front();
+void delete_part();
+void display();
+int count=0;
+void main()
+{
+	int n=0;
+	int item;
+	while(n!=8)
+	{
+		printf("Enter your choice:\n1:insert_front\n2:insert_end\n3:insert_part\n4:del_front\n5:del_end\n6:del_part\n7:diplay\n");
+		scanf("%d",&n);
+		switch(n)
+		{
+			case 1:
+				printf("Enter the item\n");
+				scanf("%d",&item);
+				insert_front(item);
+				break;
+			case 2:
+				printf("Enter the item\n");
+				scanf("%d",&item);
+			    insert_end(item);
+				break;
+			case 3:
+				printf("Enter the item\n");
+				scanf("%d",&item);
+			    insert_part(item);
+				break;
+			case 4:
+			    delete_front();
+				break;
+			case 5:
+			    delete_end();
+				break;
+			case 6:
+			    delete_part();
+			    break;
+			case 7:
+			    display();
+				break;
+			case 8:
+				exit(0);
+			default:
+				printf("invalid choice\n");
+								
+		}
+		
+		
+	}
+	
+}
+void insert_front(int item)
+{
+	temp=(struct node*)malloc(sizeof(struct node));
+	if(head==NULL)
+	{   temp->data=item;
+		temp->link=NULL;
+		head=temp;
+		count++;
+	}
+	else
+	{
+		temp->data=item;
+		temp->link=head;
+		head=temp;
+		count++;
+	
+	}
+}
+void insert_end(int item)
+{
+	temp=(struct node *)malloc(sizeof(struct node));
+	printf("entered");
+	if (head==NULL)
+	{
+		temp->link=NULL;
+		head=temp;
+			temp->data=item;
+		count++;
+	}
+	else
+	{
+		p=head;
+		while(p->link!=0)
+		{ 
+			p=p->link;
+		}
+		p->link=temp;
+		temp->data=item;
+		temp->link=NULL;
+		count++;
+}
+
+}
+void insert_part(int item)
+{
+	int pos,flag=0;
+	printf("Enter the position");
+	scanf("%d",&pos);
+	p=head;
+	for(int i=1;i<pos;i++)
+	{
+		q=p;
+		p=p->link;
+		if(p==NULL)
+		{
+			flag=1;
+			break;
+		}
+		
+	}
+	if(flag==1)
+	{
+		printf("Invalid position");
+	}
+	else
+	{
+		temp=(struct node *)malloc(sizeof(struct node));
+		temp->data=item;
+	
+	if(pos==1)
+	{
+		temp->link=head;
+		head=temp;
+	}
+	else
+	{
+		temp->link=p;
+		q->link=temp;
+	}
+}
+}
+void delete_front()
+{
+	if(head==NULL)
+	{
+		printf("Deletion not possible");
+	}
+	else
+	{
+		temp=head;
+		if(head->link==NULL)
+		{
+			head=NULL;
+		}
+		else
+		{
+			head=head->link;	
+		}
+		printf("Deleted element is %d",temp->data);
+		free(temp);
+	}
+}
+void delete_end()
+{
+	if(head==NULL)
+	{
+		printf("Deletion is not possible");
+	}
+	else
+	{
+		p=head;
+		if(head->link==NULL)
+		{
+			head=NULL;
+		}
+	else
+	{
+		while(p->link!=NULL)
+		{
+			q=p;
+			p=p->link;
+		}
+		q->link=NULL;		
+	}
+	printf("Deleted element is %d",p->data);
+	free(p);
+}
+}
+void delete_part()
+{
+	int pos;
+	if(head==NULL)
+	{
+		printf("Deletion not possible");
+	}
+	else
+	{
+		printf("Enter the position");
+		scanf("%d",&pos);
+		if(pos==1)
+		{
+			if(head->link==NULL)
+			{
+				p=head;
+				head=NULL;
+				free(p);	
+			}
+			else
+			{
+				p=head;
+				head=head->link;
+				free(p);
+			}
+		}
+		else
+		{
+			p=head;
+			for(int i=1;i<pos;i++)
+			{
+				if(p->link!=NULL)
+				{
+					q=p;
+					p=p->link;
+				}
+				else
+				{
+					printf("Invalid position");
+					exit(0);
+				}
+			}
+		}
+		q->link=p->link;
+		free(p);
+	}
+}
+void display()
+{
+	
+	struct node *p;
+	if(count==0)
+	{
+		printf("list empty\n");
+	}
+	else
+	{
+		p=head;
+		if(count=1)
+		printf("the elements are\n");
+		while(p!=NULL)
+		{
+			printf("%d\n",p->data);
+			p=p->link;
+		}
+		
+	}
+}
