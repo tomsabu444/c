@@ -62,7 +62,7 @@ void display()
  else
  {
  printf("Elements in the Stack are:\n");
- for(i=0;i<=top;i++)
+ for(i=top;i>=0;i--)
  printf("%d\n",a[i]);
  }
 }
