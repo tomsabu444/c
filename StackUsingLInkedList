@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node* link;
+}*top=NULL,*temp,*p;
+void push(int);
+void pop();
+void display();
+void main()
+{
+	int n=0;
+	int item;
+	while(n!=4)
+	{
+		printf("Enter your choice:\n1:push\n2:pop\n3:display\n4.exit");
+		scanf("%d",&n);
+		switch(n)
+		{
+			case 1:
+				printf("Enter the item\n");
+				scanf("%d",&item);
+				push(item);
+				break;
+			case 2:
+			    pop();
+				break;
+			case 3:
+			    display();
+				break;
+			case 4:
+				exit(0);
+			default:
+				printf("invalid choice\n");
+								
+		}
+		
+		
+	}
+	
+}
+void push(int item)
+{
+	temp=(struct node*)malloc(sizeof(struct node));
+	if(top==NULL)
+	{   temp->data=item;
+		temp->link=NULL;
+		top=temp;
+	}
+	else
+	{
+		temp->data=item;
+		temp->link=top;
+		top=temp;
+	}
+}
+
+void pop()
+{
+	if(top==NULL)
+	{
+		printf("Deletion not possible\n");
+	}
+	else
+	{
+		temp=top;
+			top=top->link;	
+		printf("Deleted element is %d \n",temp->data);
+		free(temp);
+	}
+}
+void display()
+{
+	if(top==NULL)
+	{
+		printf("stack empty\n");
+	}
+	
+	else
+	{
+		p=top;
+		printf("the stack is:\n");
+		while(p!=NULL)
+		{
+			printf("%d\n",p->data);
+			p=p->link;
+		}
+		
+	}
+}
