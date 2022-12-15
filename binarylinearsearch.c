@@ -70,13 +70,12 @@ void binary()
 			{
 				end=mid-1;
 			}
-		
+	}	
 		if (pos==-1)
 		{
 			printf("Element not found");
-			break;
 		}
-	}
+	
 }
     
 void main()
