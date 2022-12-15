@@ -13,9 +13,9 @@ void linear()
     scanf("%d",&key);
     for(i=0;i<n;i++)
     {
-        if (a[i]==key)
+        if (a[i]==key){
         printf("element found at position %d",i+1);
-        flag=1;
+        flag=1;}
     }
     if (flag==0)
     printf("Element not found");
